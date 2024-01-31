@@ -1,0 +1,60 @@
+{
+  "body": {
+    "ctx": {
+      "school_short_name": "Benjamin Russell Wildcats",
+      "renew_link": "https://gofan.co/renewal/42257?renew=9708353E54CAD2E0",
+      "mascot": "Wildcats",
+      "logo_url": "https://production-gofan-assets.s3.amazonaws.com/uploads/school/logo/AL11823/Logo_PNG.png",
+      "learn_more_url": null,
+      "refuse_link": "https://gofan.co/renewal/42257?renew=9708353E54CAD2E0&declined=true",
+      "school_name": "Benjamin Russell High School",
+      "primary_color": "000000",
+      "sport": "Football"
+    },
+    "last_name": "Wilson",
+    "id": 28873,
+    "first_name": "Bryan",
+    "seats": [
+      {
+        "id": 6459814,
+        "label": "2",
+        "seatInfo": {
+          "category": "Reserved Seating",
+          "row": "17",
+          "seat": {
+            "id": null,
+            "label": "2",
+            "seatInfo": null,
+            "seatsIoLabel": "Section C-17-2",
+            "ticketId": 3759280
+          },
+          "section": "Section C"
+        },
+        "seatsIoLabel": "Section C-17-2",
+        "ticketId": 3759280
+      },
+      {
+        "id": 6460490,
+        "label": "1",
+        "seatInfo": {
+          "category": "Reserved Seating",
+          "row": "17",
+          "seat": {
+            "id": null,
+            "label": "1",
+            "seatInfo": null,
+            "seatsIoLabel": "Section C-17-1",
+            "ticketId": 3759280
+          },
+          "section": "Section C"
+        },
+        "seatsIoLabel": "Section C-17-1",
+        "ticketId": 3759280
+      }
+    ],
+    "email": "bryancw4@gmail.com",
+    "seasonRenewalId": 2805,
+    "status": "NORESPONSE"
+  },
+  "type": "upsertSeasonRenewalFan"
+}
