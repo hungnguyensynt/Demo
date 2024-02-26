@@ -1,4 +1,6 @@
-import React, { useState } from 'react';
+import React, {useEffect, useState} from 'react';
+import ProductTrackingFetcher from "../services/productTracking";
+import {getMessageId} from "../services/message";
 
 const PaymentModal = () => {
     const [showModal, setShowModal] = useState(false);
@@ -6,6 +8,53 @@ const PaymentModal = () => {
     const toggleModal = () => {
         setShowModal(!showModal);
     };
+
+    useEffect( () => {
+        async function fetchData() {
+            debugger;
+            // You can await here
+            // modal opened from payment success page
+            if (showModal) {
+                const subID = localStorage.getItem("subscriptionKey");
+                if (!subID || subID === '') {
+                    return;
+                }
+                const tracker = new ProductTrackingFetcher();
+                await tracker.track({
+                    "subscriberID": subID,
+                    "sessionID": subID,
+                    "messageID": getMessageId(),
+                    "timestamp": Date.now(),
+                    "appId": window.sn_meta.app_id,
+                    "installationKey": window.sn_meta.app_signature,
+                    "event": "CartUpdating",
+                    "cart": [
+                        {
+                            "active": 1,
+                            "code": "SYNT-DEMO-001",
+                            "description": "",
+                            "id": "9999",
+                            "imageUrls": [
+                                "https://synt.com/wp-content/uploads/2019/11/logo_small.png"
+                            ],
+                            "name": "Upgrade to our Pro Plan to continue exploring and reading more articles!",
+                            "price": 5,
+                            "product_url": window.location.href,
+                            "sku": "",
+                            "product_id": 9999,
+                            "quantity": 1,
+                            "lastItemAdded": true
+                        }
+                    ]
+                })
+
+            }
+            // ...
+        }
+        fetchData().then(r => {
+            console.log('done')
+        });
+    }, [showModal]);
 
 
 
