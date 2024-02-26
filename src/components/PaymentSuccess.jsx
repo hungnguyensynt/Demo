@@ -1,7 +1,7 @@
-import React, {useEffect} from 'react';
+import React, {useEffect, useCallback} from 'react';
 import { useNavigate } from 'react-router-dom';
 import ProductTrackingFetcher from "../services/productTracking";
-import {getMessageId} from "../services/message";
+import {getMessageId, getMessageIdPayload} from "../services/message";
 
 const PaymentSuccess = () => {
     const isPaymentRunning = localStorage.getItem("payment-in-progress") === "true"
@@ -11,16 +11,21 @@ const PaymentSuccess = () => {
         localStorage.removeItem("payment-in-progress")
     }
 
-    useEffect(async () => {
+    const trackPurchase = useCallback(async () => {
         const subID = localStorage.getItem("subscriptionKey");
         if (!subID || subID === '') {
             return;
         }
+        const storedMsgId = getMessageId();
+        if (!storedMsgId || storedMsgId === '') {
+            return;
+        }
+        const msgId = getMessageIdPayload(storedMsgId);
         const tracker = new ProductTrackingFetcher();
         const body = {
             "subscriberID": subID,
             "sessionID": subID,
-            "messageID": getMessageId(),
+            "messageID": msgId,
             "timestamp": Date.now(),
             "appId": window.sn_meta.app_id,
             "installationKey": window.sn_meta.app_signature,
@@ -39,6 +44,11 @@ const PaymentSuccess = () => {
             }
         }
         await tracker.track(body)
+    }, [])
+
+    useEffect(() => {
+        trackPurchase();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
 
     const goToHome = () => {
