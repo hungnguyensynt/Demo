@@ -1,6 +1,6 @@
 import React, {useEffect, useState} from 'react';
 import ProductTrackingFetcher from "../services/productTracking";
-import {getMessageId} from "../services/message";
+import {getMessageId, getMessageIdPayload} from "../services/message";
 
 const PaymentModal = () => {
     const [showModal, setShowModal] = useState(false);
@@ -19,11 +19,16 @@ const PaymentModal = () => {
                 if (!subID || subID === '') {
                     return;
                 }
+                const storedMsgId = getMessageId();
+                if (!storedMsgId || storedMsgId === '') {
+                    return;
+                }
+                const msgId = getMessageIdPayload(storedMsgId);
                 const tracker = new ProductTrackingFetcher();
                 await tracker.track({
                     "subscriberID": subID,
                     "sessionID": subID,
-                    "messageID": getMessageId(),
+                    "messageID": msgId,
                     "timestamp": Date.now(),
                     "appId": window.sn_meta.app_id,
                     "installationKey": window.sn_meta.app_signature,
