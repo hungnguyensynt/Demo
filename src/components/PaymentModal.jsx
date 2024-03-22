@@ -33,21 +33,20 @@ const PaymentModal = () => {
                     "appId": window.sn_meta.app_id,
                     "installationKey": window.sn_meta.app_signature,
                     "event": "CartUpdating",
+                    "platform": "media",
                     "cart": [
                         {
-                            "active": 1,
-                            "code": "SYNT-DEMO-001",
-                            "description": "",
                             "id": "9999",
+                            "product_id": 9999,
+                            "code": "SYNT-DEMO-001",
+                            "name": "Upgrade Pro Plan",
+                            "price": 5, // can be removed
+                            "description": "Upgrade to our Pro Plan to continue exploring and reading more articles!",
                             "imageUrls": [
                                 "https://synt.com/wp-content/uploads/2019/11/logo_small.png"
                             ],
-                            "name": "Upgrade to our Pro Plan to continue exploring and reading more articles!",
-                            "price": 5,
-                            "product_url": window.location.href,
-                            "sku": "",
-                            "product_id": 9999,
-                            "quantity": 1,
+                            "product_url": window.location.href, // can be removed, user subscription url instead
+                            "quantity": 1, // can be removed
                             "lastItemAdded": true
                         }
                     ]
@@ -56,9 +55,10 @@ const PaymentModal = () => {
             }
             // ...
         }
-        fetchData().then(r => {
-            console.log('done')
-        });
+        // fetchData no longer needed since services worker did it
+        // fetchData().then(r => {
+        //     console.log('done')
+        // });
     }, [showModal]);
 
 

@@ -47,7 +47,8 @@ const PaymentSuccess = () => {
     }, [])
 
     useEffect(() => {
-        trackPurchase();
+        // trackPurchase no longer needed since services worker did it
+        // trackPurchase();
     // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
 
