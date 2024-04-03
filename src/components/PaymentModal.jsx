@@ -5,6 +5,7 @@ import {getMessageId, getMessageIdPayload} from "../services/message";
 const PaymentModal = () => {
     const [showModal, setShowModal] = useState(false);
     const paymentLink = 'https://buy.stripe.com/test_5kA6rebizco4cCcbII'
+    const internalPaymentLink = '/internal-payment';
     const toggleModal = () => {
         setShowModal(!showModal);
     };
@@ -87,8 +88,12 @@ const PaymentModal = () => {
                                 <button type="button" className="btn btn-success" onClick={() => {
                                     localStorage.setItem("payment-in-progress", "true")
                                     window.location = paymentLink
-                                }}>Pay and
-                                    Continue
+                                }}>Pay With Stripe
+                                </button>
+                                <button type="button" className="btn btn-success" onClick={() => {
+                                    localStorage.setItem("payment-in-progress", "true")
+                                    window.location = internalPaymentLink
+                                }}>Pay With Synt
                                 </button>
                                 <button type="button" className="btn btn-secondary" onClick={toggleModal}>Close</button>
                             </div>
