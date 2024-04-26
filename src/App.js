@@ -10,20 +10,23 @@ import {categories} from './constants/index'
 import Detail from "./components/Detail";
 import PaymentSuccess from "./components/PaymentSuccess";
 import InternalPayment from './components/InternalPayment'
+import RSSFeed from './components/Rss'
 
 function App() {
   const apiKey = "bKOqdG3vfuhfn8MgkX7TrJWFyFCKjNBc";
+  const currentPath = window.location.pathname
 
   return (
     <>
       <Router>
-        <Navbar />
+        {currentPath !== '/rss' && <Navbar />}
         <Routes>
           <Route exact path='/' element={<TopStories apiKey={apiKey} section="home" />}></Route>
           <Route exact path="/detail/:id" element={<Detail />} />
           <Route exact path='/about' element={<About />}></Route>
           <Route exact path='/internal-payment' element={<InternalPayment />}></Route>
           <Route exact path='/payment-successful' element={<PaymentSuccess />}></Route>
+          <Route exact path='/rss' element={<RSSFeed />}></Route>
           <Route exact path='*' element={<NotFound />}></Route>
           <Route exact path='/search' element={<Search apiKey={apiKey}/>}></Route>
           {
@@ -32,7 +35,7 @@ function App() {
             })
           }
         </Routes>
-        <Footer />
+        {currentPath !== '/rss' && <Footer />}
       </Router>
     </>
   )
