@@ -20,7 +20,7 @@ function App() {
         <Navbar />
         <Routes>
           <Route exact path='/' element={<TopStories apiKey={apiKey} section="home" />}></Route>
-          <Route exact path="/detail/:id" element={<Detail />} />
+          <Route path="/detail/*" element={<Detail />} />
           <Route exact path='/about' element={<About />}></Route>
           <Route exact path='/internal-payment' element={<InternalPayment />}></Route>
           <Route exact path='/payment-successful' element={<PaymentSuccess />}></Route>
