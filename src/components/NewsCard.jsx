@@ -19,6 +19,7 @@ function NewsCard(props){
                 localStorage.setItem("currentArticle", JSON.stringify(props));
                 const lastPath = getLastPath(urlArticle);
                 navigate(`/detail/${lastPath}`);
+                window.location.reload();
             } else {
 
             }
