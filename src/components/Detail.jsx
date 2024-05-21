@@ -18,7 +18,7 @@ function Detail() {
   return (
     <div className='card' style={{ paddingTop: 50 }}>
       <div className='card-body' style={{ height: '100%' }}>
-        <h3 className='card-title'>{title}</h3>
+        <h3 id="newsDetailTitle" className='card-title'>{title}</h3>
         <p className='card-text'>
           <h4>Viewing: <a href={newsUrl}>{newsUrl}</a></h4>
           <small className='text-muted'>
@@ -27,6 +27,7 @@ function Detail() {
           </small>
         </p>
         <img
+          id='newsDetailImage'
           src={imgUrl == null ? Image : imgUrl}
           alt='...'
           width='50% !important'
